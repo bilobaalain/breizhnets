@@ -11,6 +11,8 @@
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
     header {
       position: fixed;
@@ -155,6 +157,32 @@
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
+    @media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .scrolling-text h1 {
+    font-size: 1rem;
+  }
+}
+
   </style>
 </head>
 <body>

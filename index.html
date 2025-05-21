@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BreizhNet - Auth</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+    header video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 320px;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    .form-container h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 1.2rem;
+    }
+    .input-group input, .input-group select {
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      color:#f6f0f0;
+      font-size: 1rem;
+      width: 95%;
+      appearance: none;
+    }
+    .input-group select {
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'12'%20height%3D'12'%20viewBox%3D'0%200%2012%2012'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M2%204l4%204%204-4' fill='%23333'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 0.65rem auto;
+    }
+    .input-group input::placeholder {
+      color: #ddd;
+    }
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+    }
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    select option {
+      
+      color: #000000;
+      background: rgba(24, 57, 58, 0.2);
+    }
+
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #b9159b;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .bottom-link {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .bottom-link a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+   
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: white;
+      padding: 0.5rem;
+    }
+    .form-page {
+      display: none;
+    }
+    .form-page.active {
+      display: block;
+    }
+    .scrolling-text {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <video autoplay loop muted playsinline>
+      <source src="Vidéo sans titreee.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture de vidéos.
+    </video>
+    <div class="overlay"></div>
+  </header>
+  <section>
+    <div class="form-container">
+      <div id="login-form" class="form-page active">
+        <h2>Login</h2>
+        <form onsubmit="return handleLogin(event)">
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" placeholder="Username" required>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <div class="options" style="margin-top: -10px; margin-bottom: 15px;">
+            <label>
+              <input type="checkbox" onclick="togglePassword()"> Afficher le mot de passe
+            </label>
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-user-tag"></i>
+            <select id="role" required>
+              <option value=""> Profil utilisateur</option>
+              <option value="admin">Administrateur</option>
+              <option value="contributor">Contributeur</option>
+              <option value="medecin">Médecin</option>
+              <option value="client">Client</option>
+              <option value="other">Autre professionnel</option>
+            </select>
+          </div>
+          <div class="options">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#" onclick="switchForm('reset-form')">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="bottom-link">
+          Don’t have an account? <a href="#" onclick="switchForm('register-form')">Register</a>
+        </div>
+      </div>
+      <div id="register-form" class="form-page">
+        <h2>Register</h2>
+        <form>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Username" required>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn">Create Account</button>
+        </form>
+        <div class="bottom-link">
+          Already have an account? <a href="#" onclick="switchForm('login-form')">Login</a>
+        </div>
+      </div>
+      <div id="reset-form" class="form-page">
+        <h2>Reset Password</h2>
+        <form>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Enter your email" required>
+          </div>
+          <button type="submit" class="btn">Send Reset Link</button>
+        </form>
+        <div class="bottom-link">
+          <a href="#" onclick="switchForm('login-form')">Back to Login</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="scrolling-text">
+    <h1>BreizhNet - Brest - Votre présence en ligne, made in Breizh<br></h1>
+    </div>
+   
+   
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    function switchForm(targetId) {
+      document.querySelectorAll('.form-page').forEach(form => form.classList.remove('active'));
+      document.getElementById(targetId).classList.add('active');
+    }
+  </script>
+  <script>
+  function togglePassword() {
+    const pwd = document.getElementById("password");
+    pwd.type = pwd.type === "password" ? "text" : "password";
+  }
+</script><script>
+  function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const role = document.getElementById('role').value;
+
+    if (!username || !password || !role) {
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem('users')) || {};
+
+    if (users[username]) {
+      if (users[username].password !== password) {
+        alert("Mot de passe incorrect pour l'utilisateur " + username);
+        return;
+      }
+    } else {
+      users[username] = { password: password };
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', username);
+    localStorage.setItem('role', role);
+
+    switch(role) {
+      case 'admin': window.location.href = 'admin.html'; break;
+      case 'contributor': window.location.href = 'contributor.html'; break;
+      case 'medecin': window.location.href = 'medecin.html'; break;
+      case 'client': window.location.href = 'client.html'; break;
+      case 'other': window.location.href = 'autre.html'; break;
+      default: alert('Rôle invalide.');
+    }
+  }
+</script>
+
+
+</body>
+</html>

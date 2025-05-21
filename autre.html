@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Espace Autre Professionnel - BreizhNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <video autoplay muted loop playsinline id="background-video">
+    <source src="129452-744385451_small(1).mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture de vidéos HTML5.
+  </video>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>Bienvenue <span id="user-name"></span></h1>
+    <p>Vous êtes connecté à l’espace réservé aux autres professionnels de BreizhNet.</p>
+    <a href="index.html" class="button">Se déconnecter</a>
+    <a href="dashboard.html" class="button">Continuer</a>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const username = localStorage.getItem('username');
+    document.getElementById('user-name').textContent = username ? username : 'Utilisateur';
+  </script>
+</body>
+</html>

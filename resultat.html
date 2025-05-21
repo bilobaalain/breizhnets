@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Résultats à Brest – BreizhNet Santé</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9f9fb;
+      color: #333;
+    }
+    header {
+      background-color: #ffffff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      color: #0066cc;
+    }
+    .filters {
+      background: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .filters label {
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .filters select {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      min-width: 180px;
+    }
+    .filters button {
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .results {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .professional-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-left: 6px solid #0066cc;
+    }
+    .professional-card h3 {
+      margin-top: 0;
+      color: #0066cc;
+    }
+    .professional-card p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+    .professional-card button {
+      margin-top: 1rem;
+      background: #1db7dd;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #f1f5f9;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BreizhNet Santé – Résultats à Brest</h1>
+    <nav>
+      <a href="dashboard.html">Accueil</a>
+    </nav>
+  </header>
+
+  <section class="filters">
+    <label>Spécialité :</label>
+    <select>
+      <option>Tout</option>
+      <option>Oncologie</option>
+      <option>Neurologie</option>
+      <option>Hématologie</option>
+      <option>Psychiatrie</option>
+      <option>Cardiologie</option>
+      <option>Endocrinologie</option>
+      <option>Dermatologie</option>
+      <option>Chirurgie orthopédique</option>
+      <option>Rhumatologie</option>
+      <option>Gastroentérologie</option>
+      <option>Ophtalmologie</option>
+      <option>ORL</option>
+      <option>Néphrologie</option>
+      <option>Pneumologie</option>
+      <option>Génétique médicale</option>
+      <option>Infectiologie</option>
+      <option>Médecine tropicale</option>
+      <option>Gynécologie obstétrique</option>
+      <option>Gériatrie</option>
+      <option>Soins palliatifs</option>
+    </select>
+
+    <label>Langue :</label>
+    <select>
+      <option>Toutes</option>
+      <option>Français</option>
+      <option>Anglais</option>
+      <option>Espagnol</option>
+      <option>Arabe</option>
+      <option>Allemand</option>
+      <option>Breton</option>
+    </select>
+
+    <label>Disponibilité :</label>
+    <select>
+      <option>Toutes</option>
+      <option>Aujourd'hui</option>
+      <option>Demain</option>
+      <option>Cette semaine</option>
+    </select>
+
+    <button>Appliquer</button>
+  </section>
+
+  <section class="results">
+    <div class="professional-card">
+      <h3>Dr. Nina Le Bris</h3>
+      <p>Rhumatologue – Brest</p>
+      <p>Langues : Français, Allemand</p>
+      <p>Dispo : 16 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Clara Le Bris</h3>
+      <p>Cardiologue – Brest</p>
+      <p>Langues : Français, Allemand</p>
+      <p>Dispo : 17 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Luc Morvan</h3>
+      <p>Pédiatre – Brest</p>
+      <p>Langues : Français, Breton</p>
+      <p>Dispo : 18 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Julien Morvan</h3>
+      <p>Gynécologue – Brest</p>
+      <p>Langues : Français, Arabe</p>
+      <p>Dispo : 19 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Emma Kergoat</h3>
+      <p>Néphrologue – Brest</p>
+      <p>Langues : Français, Breton</p>
+      <p>Dispo : 20 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Julien Morvan</h3>
+      <p>Neurologue – Brest</p>
+      <p>Langues : Français, Anglais</p>
+      <p>Dispo : 21 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Luc Haddad</h3>
+      <p>Oncologue – Brest</p>
+      <p>Langues : Français, Anglais</p>
+      <p>Dispo : 22 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Yann Kerbrat</h3>
+      <p>Sexologue – Brest</p>
+      <p>Langues : Français, Espagnol</p>
+      <p>Dispo : 23 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Alexandre Le Goff</h3>
+      <p>Gériatre – Brest</p>
+      <p>Langues : Français, Breton</p>
+      <p>Dispo : 24 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Sophie Morel</h3>
+      <p>Psychiatre – Brest</p>
+      <p>Langues : Français, Breton</p>
+      <p>Dispo : 25 mai 2025</p>
+      <button><a href="https://app.diagrams.net/%3Cp%20class=%22MsoNormal%22%3E%3Cspan%20style=%22mso-ignore:vglayout;position:relative;z-index:251658240%22%3E%3Cspan%20style=%22position:absolute;left:-43px;top:-39px;width:923px;height:1077px%22%3E%3Cimg%20width=%22738%22%20height=%22862%22%20src=%22file:///C:/Users/bilob/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png%22%3E%3C/span%3E%3C/span%3E%3Cspan%20style=%22font-size:6.0pt;line-height:107%%22%3E&nbsp;%3C/span%3E%3C/p%3E">Prendre RDV</a></button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Sophie Morel</h3>
+      <p>Oncologue – Brest</p>
+      <p>Langues : Français, Espagnol</p>
+      <p>Dispo : 26 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Sophie Haddad</h3>
+      <p>Cardiologue – Brest</p>
+      <p>Langues : Français, Arabe</p>
+      <p>Dispo : 15 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Yann Morel</h3>
+      <p>Allergologue – Brest</p>
+      <p>Langues : Français, Breton</p>
+      <p>Dispo : 16 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Julien Le Bris</h3>
+      <p>Gériatre – Brest</p>
+      <p>Langues : Français, Breton</p>
+      <p>Dispo : 17 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Paul Haddad</h3>
+      <p>Chirurgien orthopédiste – Brest</p>
+      <p>Langues : Français, Allemand</p>
+      <p>Dispo : 18 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Camille Haddad</h3>
+      <p>Néphrologue – Brest</p>
+      <p>Langues : Français, Espagnol</p>
+      <p>Dispo : 19 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Luc Tanguy</h3>
+      <p>Gériatre – Brest</p>
+      <p>Langues : Français, Allemand</p>
+      <p>Dispo : 20 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Camille Abdallah</h3>
+      <p>Rhumatologue – Brest</p>
+      <p>Langues : Français, Allemand</p>
+      <p>Dispo : 21 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Luc Tanguy</h3>
+      <p>Généticien – Brest</p>
+      <p>Langues : Français, Espagnol</p>
+      <p>Dispo : 22 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Paul Morel</h3>
+      <p>Gériatre – Brest</p>
+      <p>Langues : Français, Anglais</p>
+      <p>Dispo : 23 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Clara Kerbrat</h3>
+      <p>Médecin tropicaliste – Brest</p>
+      <p>Langues : Français, Arabe</p>
+      <p>Dispo : 24 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Paul Morel</h3>
+      <p>Infectiologue – Brest</p>
+      <p>Langues : Français, Anglais</p>
+      <p>Dispo : 25 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Emma Kergoat</h3>
+      <p>Endocrinologue – Brest</p>
+      <p>Langues : Français, Espagnol</p>
+      <p>Dispo : 26 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Yann Le Bris</h3>
+      <p>Pneumologue – Brest</p>
+      <p>Langues : Français, Arabe</p>
+      <p>Dispo : 15 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    
+    <div class="professional-card">
+      <h3>Dr. Luc Kerbrat</h3>
+      <p>Infectiologue – Brest</p>
+      <p>Langues : Français, Anglais</p>
+      <p>Dispo : 16 mai 2025</p>
+      <button>Prendre RDV</button>
+    </div>
+    </section>
+
+  <footer>
+    © 2025 BreizhNet Santé – Résultats professionnels localisés à Brest
+  </footer>
+</body>
+</html>
